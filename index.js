@@ -45,6 +45,7 @@ React - фреймворк/бібліотека, яка полегшує роз�
 /*
 
 React - об'єкт-збірка функцій для роботи з фреймворком
+React є точкою входу у бібліотеку React
 
 React.createElement() - функція для створення реакт-елементів
 
@@ -61,16 +62,16 @@ ReactDOM - об'єкт, який реалізує VirtualDOM - об'єктне �
 
 const root = document.querySelector('#root');
 
-const headElement = React.createElement('h1', {}, 'Hello, world'); // створюю реакт-елемент
+
+const button = React.createElement('button', {}, 'X');
+
+const liElement = React.createElement('li', {}, 'List item 1', button); // створюю реакт-елемент
+
+
+const ul = React.createElement('ul', {}, liElement);
 
 // створити точку входа для Реакт-дерева
 
 const rootElementForReact = ReactDOM.createRoot(root);
 
-rootElementForReact.render(headElement);
-
-
-/*
-За допомогою реакту створити заголовок з довільним текстом і відобразити його на екрані
-
-*/
+rootElementForReact.render(ul);
