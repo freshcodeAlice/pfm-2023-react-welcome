@@ -1,7 +1,7 @@
 import React from 'react';
+import Aloha from './Aloha';
 
-
- function App (props) {
+ function App (props) { // Parent component (батьківська компонента)
 
   const user = {
     firstName: 'John',
@@ -12,7 +12,18 @@ import React from 'react';
 // const h1 = React.createElement('h1', {}, `Hello, ${user.firstName}`);
 // return h1;
 
-    return <h1>Hello, {user.firstName}</h1>   // JSX-синтаксис
+/*    return <h1>Hello, {user.firstName}</h1>   // JSX-синтаксис
+          <p>lorem ipsum</p>
+          */
+
+          // return React.createElement('article', {}, React.createElement('h1', {}, 'Heading'), React.createElement('p', {}, 'lorem ipsum'))
+          // return (<article>
+          //         <h1>Heading</h1>
+          //         <p>lorem ipsum</p>
+          //       </article>)
+
+
+          return <Aloha />
 
 }
 
@@ -21,7 +32,7 @@ export default App;
 
 
 /*
-Компоненти в React - це блок коду (функція, наприклад), який створює і повертає react-елементи
+Компоненти в React - це функція, яка отримує певні вхідні дані і повертає react-елементи
 
 Компоненти бувають двох типів:
 - Функціональні - це звичайна JS-функція, яка повертає створений react-елемент
