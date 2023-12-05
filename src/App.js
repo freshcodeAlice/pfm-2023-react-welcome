@@ -1,5 +1,6 @@
 import React from 'react';
 import Aloha from './components/Aloha';
+import Light from './components/Light';
 
  function App (props) { // Parent component (батьківська компонента)
 
@@ -13,9 +14,7 @@ import Aloha from './components/Aloha';
       // props must be an object!
 
       return (<section>
-        <Aloha name={user.firstName} age={50}/>
-        <Aloha name="Rick" />
-        <Aloha name="Jane" />
+        <Light lightValue={200}/>
         </section>)
 
 }
