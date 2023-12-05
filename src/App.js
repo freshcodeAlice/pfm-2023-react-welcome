@@ -9,21 +9,14 @@ import Aloha from './components/Aloha';
      age: 18
   }
 
-// const h1 = React.createElement('h1', {}, `Hello, ${user.firstName}`);
-// return h1;
+//      const componentAloha = React.createElement(Aloha, {name: 'Rick', age: 50} );
+      // props must be an object!
 
-/*    return <h1>Hello, {user.firstName}</h1>   // JSX-синтаксис
-          <p>lorem ipsum</p>
-          */
-
-          // return React.createElement('article', {}, React.createElement('h1', {}, 'Heading'), React.createElement('p', {}, 'lorem ipsum'))
-          // return (<article>
-          //         <h1>Heading</h1>
-          //         <p>lorem ipsum</p>
-          //       </article>)
-
-
-          return <Aloha />
+      return (<section>
+        <Aloha name={user.firstName} age={50}/>
+        <Aloha name="Rick" />
+        <Aloha name="Jane" />
+        </section>)
 
 }
 
