@@ -1,5 +1,5 @@
 import React from 'react';
-import Aloha from './Aloha';
+import Aloha from './components/Aloha';
 
  function App (props) { // Parent component (батьківська компонента)
 
