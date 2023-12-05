@@ -6,6 +6,8 @@ class Light extends React.Component {
         this.state = {
             light: 'on'
         }
+        this.changeLamp = this.changeLamp.bind(this);
+        this.clickHandler = this.clickHandler.bind(this);
     }
 
     changeLamp() {
