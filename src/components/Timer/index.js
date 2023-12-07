@@ -5,7 +5,8 @@ class Timer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            time: new Date(0,0,0,0,0,0,0,0)
+            time: new Date(0,0,0,0,0,0,0,0),
+            isRunning: false
         }
         this.intervalId = null;
     }
@@ -15,14 +16,15 @@ class Timer extends Component {
     }
     
     start = () => {
-        if (!this.intervalId) {
+        if (!this.state.isRunning) {
             this.intervalId = setInterval(() => {
 
                 // const newDate = new Date(this.state.time.getTime());
                 // newDate.setSeconds(this.state.time.getSeconds() + 1)
 
                 this.setState({
-                    time: addSeconds(this.state.time, 1)
+                    time: addSeconds(this.state.time, 1),
+                    isRunning: true
                 })
             }, 1000);
         }
@@ -34,6 +36,9 @@ class Timer extends Component {
     stop = () => {
         clearInterval(this.intervalId);
         this.intervalId = null;
+        this.setState({
+            isRunning: false
+        })
     }
 
     componentWillUnmount() {
@@ -47,12 +52,17 @@ class Timer extends Component {
         })
     }
 
+    /// Зробити одну кнопку, на якій відображається "Start", якщо таймер зупинений або "Stop" якщо він іде
+ 
     render() {
+        const callback = this.state.isRunning ? this.stop : this.start;
+        const textButton = this.state.isRunning ? 'Stop' : 'Start';
         return (
             <article>
                 <h1>{format(this.state.time, 'HH:mm:ss')}</h1>
-                <button onClick={this.start}>Start</button>
-                <button onClick={this.stop}>Stop</button>
+                {/* <button onClick={this.start}>Start</button>
+                <button onClick={this.stop}>Stop</button> */}
+                <button onClick={callback}>{textButton}</button>
                 <button onClick={this.restart}>Restart</button>
             </article>
         );
