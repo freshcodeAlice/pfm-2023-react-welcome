@@ -3,6 +3,7 @@ import Aloha from './components/Aloha';
 import Light from './components/Light';
 import Octopus from './components/Octopus';
 import Tree from './components/Tree';
+import Timer from './components/Timer';
 
 class App extends React.Component { // Parent component (батьківська компонента)
     constructor(props) {
@@ -22,8 +23,8 @@ class App extends React.Component { // Parent component (батьківська 
         return ( 
           <section>
             <button onClick={this.changeRender}>Change render</button>
-            <p>Tree is {this.state.render ? 'render' : 'off render'}</p>
-            {this.state.render ? <Tree /> : null }
+            <p>Timer is {this.state.render ? 'render' : 'off render'}</p>
+            {this.state.render ? <Timer /> : null }
           </section>
 
         )
