@@ -1,23 +1,28 @@
 import React, { Component } from 'react';
+import {format, addSeconds} from 'date-fns';
 
 class Timer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            count: 0
+            time: new Date(0,0,0,0,0,0,0,0)
         }
         this.intervalId = null;
     }
 
     componentDidMount() {
-        this.start();
+ //       this.start();
     }
     
     start = () => {
         if (!this.intervalId) {
             this.intervalId = setInterval(() => {
+
+                // const newDate = new Date(this.state.time.getTime());
+                // newDate.setSeconds(this.state.time.getSeconds() + 1)
+
                 this.setState({
-                    count: this.state.count + 1
+                    time: addSeconds(this.state.time, 1)
                 })
             }, 1000);
         }
@@ -38,14 +43,14 @@ class Timer extends Component {
     restart = () => {
 
         this.setState({
-            count: 0
+            time: new Date(0,0,0,0,0,0,0,0)
         })
     }
 
     render() {
         return (
             <article>
-                <h1>{this.state.count}</h1>
+                <h1>{format(this.state.time, 'HH:mm:ss')}</h1>
                 <button onClick={this.start}>Start</button>
                 <button onClick={this.stop}>Stop</button>
                 <button onClick={this.restart}>Restart</button>
