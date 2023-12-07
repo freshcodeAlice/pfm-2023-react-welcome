@@ -1,6 +1,7 @@
 import React from 'react';
 import Aloha from './components/Aloha';
 import Light from './components/Light';
+import Octopus from './components/Octopus';
 
  function App (props) { // Parent component (батьківська компонента)
 
@@ -13,9 +14,7 @@ import Light from './components/Light';
 //      const componentAloha = React.createElement(Aloha, {name: 'Rick', age: 50} );
       // props must be an object!
 
-      return (<section>
-        <Light lightValue={200}/>
-        </section>)
+      return <Octopus key="value"/>
 
 }
 
