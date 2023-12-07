@@ -2,19 +2,33 @@ import React from 'react';
 import Aloha from './components/Aloha';
 import Light from './components/Light';
 import Octopus from './components/Octopus';
+import Tree from './components/Tree';
 
- function App (props) { // Parent component (батьківська компонента)
+class App extends React.Component { // Parent component (батьківська компонента)
+    constructor(props) {
+      super(props);
+      this.state = {
+        render: true
+      }
+    }
 
-  const user = {
-    firstName: 'John',
-    lastName: 'Doe',
-     age: 18
-  }
+    changeRender = () => {
+      this.setState({
+        render: !this.state.render
+      })
+    }
 
-//      const componentAloha = React.createElement(Aloha, {name: 'Rick', age: 50} );
-      // props must be an object!
+      render() {
+        return ( 
+          <section>
+            <button onClick={this.changeRender}>Change render</button>
+            <p>Tree is {this.state.render ? 'render' : 'off render'}</p>
+            {this.state.render ? <Tree /> : null }
+          </section>
 
-      return <Octopus key="value"/>
+        )
+      }
+
 
 }
 
