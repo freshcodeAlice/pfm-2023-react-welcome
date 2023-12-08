@@ -4,6 +4,8 @@ import Light from './components/Light';
 import Octopus from './components/Octopus';
 import Tree from './components/Tree';
 import Timer from './components/Timer';
+import Scene from './components/Scene';
+import './reset.css';
 
 class App extends React.Component { // Parent component (батьківська компонента)
     constructor(props) {
@@ -22,9 +24,9 @@ class App extends React.Component { // Parent component (батьківська 
       render() {
         return ( 
           <section>
-            <button onClick={this.changeRender}>Change render</button>
-            <p>Timer is {this.state.render ? 'render' : 'off render'}</p>
-            {this.state.render ? <Timer /> : null }
+            {/* <button onClick={this.changeRender}>Change render</button>
+            <p>Timer is {this.state.render ? 'render' : 'off render'}</p> */}
+            <Scene />
           </section>
 
         )
