@@ -7,6 +7,7 @@ import Timer from './components/Timer';
 import Scene from './components/Scene';
 import Counter from './components/Counter';
 import UserForm from './components/UserForm';
+import Greeting from './components/Greeting';
 import './reset.css';
 
 class App extends React.Component { // Parent component (батьківська компонента)
@@ -28,7 +29,7 @@ class App extends React.Component { // Parent component (батьківська 
           <section>
             {/* <button onClick={this.changeRender}>Change render</button>
             <p>Timer is {this.state.render ? 'render' : 'off render'}</p> */}
-           <UserForm />
+           <Greeting />
           </section>
 
         )
