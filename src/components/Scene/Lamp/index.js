@@ -11,7 +11,7 @@ class Lamp extends Component {
 
     getParentSomeInfo = () => {
         // в пропсах лежить адреса функції, яку треба викликати
-        this.props.callback('hello from child')
+        this.props.callback()
     }
     
 
