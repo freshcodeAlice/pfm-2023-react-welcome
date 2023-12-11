@@ -4,12 +4,38 @@ import Aloha from '../../components/Aloha';
 class AlohaPage extends Component {
     constructor(props) {
         super(props);
+        // Automatic way
+        // const users =  ['John', 'Rick', 'Jane', 'Nick', 'Sasha', 'Dasha'].map((user, index) => ({name: user, id: index}));
+        // this.state = {
+        //     users: users
+        // };
+
         this.state = {
-            users: ['John', 'Rick', 'Jane', 'Nick', 'Sasha', 'Dasha']
+            users: [{
+                id: 0, 
+                name: 'John'
+            }, {
+                id: 1,
+                name: 'Rick'
+            }, {
+                id: 2,
+                name: 'Jane'
+            }, {
+                id: 3,
+                name: 'Nick'
+            }, {
+                id: 4,
+                name: 'Sasha'
+            }, {
+                id: 5,
+                name: 'Dasha'
+            }]
         }
+
     }
 
-    mapUsers = () => this.state.users.map(user => <Aloha name={user} />)
+    mapUsers = () => this.state.users.map(user => <Aloha name={user.name} key={user.id}/>)
+    // key має бути заснований на унікальній ідентифікації, яка виходить з самих даних! і не перестворюється при кожному перерендері (як рандом або індекс масиву)
 
     sortingUsers = () => {
         // відсортувати масив, який містить дані (на яких заснований  UI)
