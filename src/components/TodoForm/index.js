@@ -50,10 +50,15 @@ class TodoForm extends Component {
         //className={cnames}
 
 
-/*        const cnames = styles.input + ' ' + this.state.isInputValid ? styles.valid : styles.invalid
+        const cnames = cx({
+            [styles.input]: true,
+            [styles.valid]: this.state.isInputValid,
+            [styles.invalid]: !this.state.isInputValid
+        })
+        //styles.input + ' ' + this.state.isInputValid ? styles.valid : styles.invalid
 
 
-*/
+
         return (
             <form onSubmit={this.submitHandler} >
                 <input 
@@ -77,3 +82,46 @@ class TodoForm extends Component {
 
 export default TodoForm;
 
+
+/*
+Хочемо:
+{
+   className1: true,
+   className2: false,
+   className3: true 
+}  -> 'className1 className3'
+*/
+
+
+function cx(objectClassNames) {
+    /* Крок1:
+    {className1: true,
+   className2: false,
+   className3: true }  -> [[className1, true], [className2, false], [className3, true]]
+    */
+
+  const arrayOfTwo = Object.entries(objectClassNames);
+
+  // Крок 2: відфільтрувати все, що в якості значення мало false
+  //[[className1, true], [className2, false], [className3, true]] -> [[className1, true], [className3, true]]
+  const filtered = arrayOfTwo.filter(([key, condition]) => condition)
+
+  // Крок 3: перетворити цей масив з масивами на масив з тільки назвами класів
+ // [[className1, true], [className3, true]] -> [className1, className3]
+  const mapped = filtered.map(([key]) => key);
+
+    // Крок 4: перетворити одномірний масив в рядок тексту
+    // [className1, className3] -> 'className1 className3'
+
+    const result = mapped.join(' ');
+
+
+    return result;
+
+    }
+
+const cxVar2 = (objectClassNames) =>  Object
+                                        .entries(objectClassNames)
+                                        .filter(([key, condition]) => condition)
+                                        .map(([key]) => key)
+                                        .join(' ')
