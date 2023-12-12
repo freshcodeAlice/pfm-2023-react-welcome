@@ -1,18 +1,31 @@
 import React, { Component } from 'react';
+import styles from './TodoForm.module.css';
+import 'animate.css';
 
 class TodoForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
             todo: '',
-            done: false
+            done: false,
+            isInputValid: null
         }
     }
 
     changeHandler = ({target: {name, value}}) => {
+        this.setState({
+            [name]: value
+        })
+        if(value.includes('*')){
             this.setState({
-                [name]: value
+                isInputValid: false
             })
+        } else {
+            this.setState({
+                isInputValid: true
+            })
+        }
+           
     }
 
     checkboxHandler = ({target: {name, checked}}) => {
@@ -33,13 +46,22 @@ class TodoForm extends Component {
     }
     
     render() {
+        // const cnames = `animate__animated animate__bounce ${styles.container}`
+        //className={cnames}
+
+
+/*        const cnames = styles.input + ' ' + this.state.isInputValid ? styles.valid : styles.invalid
+
+
+*/
         return (
-            <form onSubmit={this.submitHandler}>
+            <form onSubmit={this.submitHandler} >
                 <input 
                     type="text"
                     name="todo"
                     value={this.state.todo}
                     onChange={this.changeHandler}
+                    className={cnames}
                     /> 
                     <label>Is it done?
                         <input type="checkbox"
@@ -54,3 +76,4 @@ class TodoForm extends Component {
 }
 
 export default TodoForm;
+
