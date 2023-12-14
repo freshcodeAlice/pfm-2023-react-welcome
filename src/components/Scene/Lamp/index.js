@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './style.css';
 
 class Lamp extends Component {
@@ -29,12 +30,10 @@ class Lamp extends Component {
     }
 }
 
-// function Lamp(props) {
-//     const cn = props.lightState ? 'lamp-on' : 'lamp-off';
-//     return (
-//         <div className={cn}></div>
-//     )
-// }
+Lamp.propTypes = {
+    lightState: PropTypes.bool.isRequired,
+    callback: PropTypes.func.isRequired
+}
 
 
 

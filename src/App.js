@@ -2,6 +2,8 @@ import React from 'react';
 import AlohaPage from './pages/AlohaPage';
 import TodoPage from './pages/TodoPage';
 import UserList from './components/UserList';
+import UserCard from './components/UserCard';
+import Lamp from './components/Scene/Lamp';
 // import './reset.css';
 
 class App extends React.Component { // Parent component (батьківська компонента)
@@ -19,9 +21,16 @@ class App extends React.Component { // Parent component (батьківська 
     }
 
       render() {
+        const user = {
+          email: 'e',
+          name: {
+            first: 'a',
+            last: 'b'
+          }
+        }
         return ( 
           <section>
-            <UserList />
+          <UserCard user={user}/>
           </section>
 
         )
