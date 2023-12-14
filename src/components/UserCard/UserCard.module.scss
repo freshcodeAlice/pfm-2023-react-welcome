@@ -1,0 +1,20 @@
+.card {
+    border: 1px solid black;
+    width: 200px;
+    padding: 2%;
+    border-radius: 8px;
+
+    .avatar {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+    }
+
+    &:hover {
+        background-color: bisque;
+    }
+}
+
+
+/// переписати UserCard на scss
+/// доповнити медіа-запитом за умови якого для мобільного вью поміщається 1-2 карточки в ширину екрану

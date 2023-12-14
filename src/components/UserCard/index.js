@@ -1,5 +1,6 @@
 import React from 'react';
-import styles from './UserCard.module.css';
+// import styles from './UserCard.module.css';
+import styles from './UserCard.module.scss';
 
 const UserCard = (props) => {
     const {name: {first, last}, 
