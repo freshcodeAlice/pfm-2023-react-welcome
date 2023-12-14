@@ -1,11 +1,16 @@
 import React from 'react';
+import styles from './UserCard.module.css';
 
 const UserCard = (props) => {
-    const {name: {first, last}} = props.user;
+    const {name: {first, last}, 
+    email, picture: {large: avatar}
+    } = props.user;
     return (
-        <div>
-            <p>{first} {last}</p>
-        </div>
+        <article className={styles.card}>
+            <img src={avatar} className={styles.avatar}/>
+            <h3>{first} {last}</h3>
+            <p>{email}</p>
+        </article>
     );
 }
 

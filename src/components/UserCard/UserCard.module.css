@@ -1,0 +1,12 @@
+.card {
+    border: 1px solid black;
+    width: 200px;
+    padding: 2%;
+    border-radius: 8px;
+}
+
+.avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
