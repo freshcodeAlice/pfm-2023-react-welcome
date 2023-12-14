@@ -16,9 +16,7 @@ const UserCard = (props) => {
     );
 }
 
-UserCard.propTypes = userPropTypes;
-
-export const userPropTypes = {
+UserCard.propTypes = {
     user: PropTypes.shape({
         name: PropTypes.shape({
             first: PropTypes.string.isRequired,

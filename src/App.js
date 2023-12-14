@@ -30,7 +30,7 @@ class App extends React.Component { // Parent component (батьківська 
         }
         return ( 
           <section>
-          <UserCard user={user}/>
+          <Lamp lightState={true} />
           </section>
 
         )
