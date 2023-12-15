@@ -6,6 +6,7 @@ import UserCard from './components/UserCard';
 import Lamp from './components/Scene/Lamp';
 import ListPage from './pages/ListPage';
 import GridPage from './pages/GridPage';
+import FlexContainer from './components/FlexContainer';
 // import './reset.css';
 
 class App extends React.Component { // Parent component (батьківська компонента)
@@ -32,7 +33,10 @@ class App extends React.Component { // Parent component (батьківська 
         }
         return ( 
           <section>
-            <GridPage />
+            <FlexContainer>
+              <div>Content 1</div>
+              <div>Content 2</div>
+              </FlexContainer>
           </section>
 
         )
