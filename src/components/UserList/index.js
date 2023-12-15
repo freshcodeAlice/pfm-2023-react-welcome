@@ -51,6 +51,14 @@ class UserList extends Component {
     }
 
 
+    prevBtnHandler = () => {
+        if(this.state.page > 1) {
+            this.setState({
+                page: this.state.page-1
+            })
+        }
+    }
+
     nextBtnHandler = () => {
         this.setState({
             page: this.state.page+1
@@ -62,6 +70,7 @@ class UserList extends Component {
         const errorMessage = <p>Ooops, something goes wrong</p>;
         return (
             <section style={{display: 'flex', flexWrap: 'wrap'}}>
+                <button onClick={this.prevBtnHandler}>Prev page</button>
                 <button onClick={this.nextBtnHandler}>Next page</button>
                 {this.state.isFetching && <Spinner /> }
                 {this.state.error && errorMessage}
