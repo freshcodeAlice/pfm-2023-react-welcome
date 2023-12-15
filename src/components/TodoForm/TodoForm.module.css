@@ -1,11 +1,5 @@
 @import url('./another.module.css');
 
-.container {
-    border: 2px solid greenyellow;
-    background-color: black;
-    color: lime
-}
-
 .input {
     background-color: white;
     border: none;

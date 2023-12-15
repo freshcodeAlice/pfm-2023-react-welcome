@@ -2,6 +2,7 @@ import React from "react";
 import TodoForm from "../../components/TodoForm";
 import TodoList from "../../components/TodoList";
 import styles from './TodoPage.module.css';
+import TodoItem from "../../components/TodoItem";
 
 class TodoPage extends React.Component {
 	constructor(props) {
@@ -46,13 +47,18 @@ class TodoPage extends React.Component {
 	}
 	
 	render() {
+		const itemsArray = this.state.list.map(todo => <TodoItem   
+												todo={todo} 
+												key={todo.id} 
+												checkboxHandler={this.checkItemHandler}
+												deleteHandler={this.deleteItem}/>)
 		return (
 			<div className={styles.container}>
 				<TodoForm getCallback={this.getNewItem} className={styles['red-text']}/>
-				<TodoList 
-					list={this.state.list} 
-					checkboxHandler={this.checkItemHandler}
-					deleteHandler={this.deleteItem}/>
+					<TodoList
+					heading="Undone tasks">
+					{itemsArray}
+					</TodoList>
 			</div>
 		);
 	}

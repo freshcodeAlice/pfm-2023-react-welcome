@@ -31,7 +31,7 @@ class App extends React.Component { // Parent component (батьківська 
         }
         return ( 
           <section>
-            <ListPage />
+            <TodoPage />
           </section>
 
         )
