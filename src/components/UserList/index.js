@@ -9,13 +9,17 @@ class UserList extends Component {
         this.state = {
             users: [],
             isFetching: true,
-            error: null
+            error: null,
+            page: 1
         }
     }
 
     componentDidMount() {
+        this.load();
+    }
 
-       getUser()
+    load = () => {
+        getUser(this.state.page)
         .then(({results}) => {
            this.setState({
             users: results,
@@ -33,11 +37,24 @@ class UserList extends Component {
         })
     }
 
-
-    componentDidUpdate() {
+    componentDidUpdate(prevProps, prevState) {
         // this.setState({  --- неконтроване оновлення стану призведе до безкінечного пере-рендеру
         //     users: []
         // })
+
+        // потрібна умова!
+        // умова - сторінка змінилась!
+        if(prevState.page !== this.state.page) {
+            this.load();
+        }
+
+    }
+
+
+    nextBtnHandler = () => {
+        this.setState({
+            page: this.state.page+1
+        })
     }
     
     render() {
@@ -45,6 +62,7 @@ class UserList extends Component {
         const errorMessage = <p>Ooops, something goes wrong</p>;
         return (
             <section style={{display: 'flex', flexWrap: 'wrap'}}>
+                <button onClick={this.nextBtnHandler}>Next page</button>
                 {this.state.isFetching && <Spinner /> }
                 {this.state.error && errorMessage}
                 {layout}
