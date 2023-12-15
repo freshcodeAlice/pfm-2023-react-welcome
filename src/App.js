@@ -33,10 +33,7 @@ class App extends React.Component { // Parent component (батьківська 
         }
         return ( 
           <section>
-            <FlexContainer>
-              <div>Content 1</div>
-              <div>Content 2</div>
-              </FlexContainer>
+           <UserList />
           </section>
 
         )
