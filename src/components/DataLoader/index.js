@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Spinner from '../Spinner';
 
-class UserLoader extends Component {
+class DataLoader extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -34,4 +34,4 @@ class UserLoader extends Component {
     }
 }
 
-export default UserLoader;
+export default DataLoader;

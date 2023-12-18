@@ -29,11 +29,7 @@ class PhoneLoader extends Component {
     }
     
     render() {
-        return (
-            <ol>
-                {this.state.phones.map(p => <li key={p.id}>{p.brand} - {p.model}</li>)}
-            </ol>
-        );
+        return this.props.children(this.state)
     }
 }
 
