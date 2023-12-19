@@ -1,10 +1,10 @@
 import React from 'react';
-import ContextObj from '../../../context';
+import UserContext from '../../../contexts/UserContext';
 
 const UserMenu = () => {
     return (
        
-           <ContextObj.Consumer>
+           <UserContext.Consumer>
             {([user, logOut]) => {
                 console.log(user);
                 return (
@@ -12,7 +12,7 @@ const UserMenu = () => {
                     <p>{user.firstName} {user.lastName}</p>
                     </div>)
             }}
-            </ContextObj.Consumer> 
+            </UserContext.Consumer> 
        
     );
 }

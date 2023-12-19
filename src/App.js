@@ -1,7 +1,10 @@
 import React from 'react';
 import ContextTree from './components/ContextTree';
 import Header from './components/Header';
-import ContextObj from './context';
+import UserContext from './contexts/UserContext';
+import ThemeContext from './contexts/ThemeContext';
+import CONSTANTS from './constants';
+const {THEMES} = CONSTANTS;
 
 class App extends React.Component { // Parent component (батьківська компонента)
     constructor(props) {
@@ -12,7 +15,8 @@ class App extends React.Component { // Parent component (батьківська 
             firstName: 'John',
             lastName: 'Doe',
             imageSrc: 'https://info.renome.ua/wp-content/uploads/2022/07/placeholder.png'
-          }
+          },
+          theme: THEMES.LIGHT
       }
     }
 
@@ -21,15 +25,23 @@ class App extends React.Component { // Parent component (батьківська 
         user: {}
       })
     }
+
+    changeTheme = () => {
+      this.setState({
+        theme: this.state.theme === THEMES.LIGHT ? THEMES.DARK : THEMES.LIGHT
+      })
+    }
   
       render() {
         // console.log(ContextObj.Provider, ContextObj.Consumer)
         return ( 
-          <ContextObj.Provider value={[this.state.user, this.logOut]}>
-            <Header />
-            <ContextTree />
-            {/* створити поряд компоненту Header, яка рендерить компоненту UserMenu, що теж потребує інфи юзера  */}
-          </ContextObj.Provider>
+          <ThemeContext.Provider value={[this.state.theme, this.changeTheme]}>
+            <UserContext.Provider value={[this.state.user, this.logOut]}>
+              <Header />
+              <ContextTree />
+              {/* створити поряд компоненту Header, яка рендерить компоненту UserMenu, що теж потребує інфи юзера  */}
+            </UserContext.Provider>
+          </ThemeContext.Provider>
         )
       }
 }

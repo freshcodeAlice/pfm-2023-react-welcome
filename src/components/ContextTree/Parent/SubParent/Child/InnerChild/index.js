@@ -1,14 +1,14 @@
 import React from 'react';
-import ContextObj from '../../../../../../context';
+import UserContext from '../../../../../../contexts/UserContext';
 
 const InnerChild = (props) => {
     console.log('InnerChild re-render')
     return (
-        <ContextObj.Consumer>
+        <UserContext.Consumer>
             {([user, logOut]) => {
                 console.log('внутрішня функція-дитина, яка керує рендером компоненти')
                 return (
-                    <div style={{ border: '3px solid black', padding: '25px' }}>
+                    <div style={{ border: 'inherit', padding: '25px' }}>
                         InnerChild
                         <p>
                          {user?.firstName} {user?.lastName}
@@ -17,7 +17,7 @@ const InnerChild = (props) => {
                     </div>
                 )
             }}
-        </ContextObj.Consumer>
+        </UserContext.Consumer>
     );
 }
 
