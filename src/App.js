@@ -1,5 +1,6 @@
 import React from 'react';
 import ContextTree from './components/ContextTree';
+import Header from './components/Header';
 import ContextObj from './context';
 
 class App extends React.Component { // Parent component (батьківська компонента)
@@ -24,14 +25,13 @@ class App extends React.Component { // Parent component (батьківська 
       render() {
         // console.log(ContextObj.Provider, ContextObj.Consumer)
         return ( 
-          <ContextObj.Provider value={[this.state, this.logOut]}>
+          <ContextObj.Provider value={[this.state.user, this.logOut]}>
+            <Header />
             <ContextTree />
-           
+            {/* створити поряд компоненту Header, яка рендерить компоненту UserMenu, що теж потребує інфи юзера  */}
           </ContextObj.Provider>
         )
       }
-
-
 }
 
 

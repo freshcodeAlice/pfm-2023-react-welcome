@@ -11,7 +11,7 @@ const InnerChild = (props) => {
                     <div style={{ border: '3px solid black', padding: '25px' }}>
                         InnerChild
                         <p>
-                         {user?.firstName} {user.user?.lastName}
+                         {user?.firstName} {user?.lastName}
                         </p>
                         <button onClick={logOut}>LogOut</button>
                     </div>
