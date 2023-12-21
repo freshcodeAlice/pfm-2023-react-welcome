@@ -4,36 +4,30 @@ import ThemeContext from '../../contexts/ThemeContext';
 import styles from './ContextTree.module.css';
 import cx from 'classnames';
 import CONSTANTS from '../../constants';
-const {THEMES} = CONSTANTS;
+import withTheme from '../../HOC/withTheme';
+const { THEMES } = CONSTANTS;
+
 
 class ContextTree extends React.PureComponent {
 
     render() {
-        console.log('ContextTree re-render')
+        const cnames = cx({
+            [styles.lightTheme]: this.props.theme === THEMES.LIGHT,
+            [styles.darkTheme]: this.props.theme === THEMES.DARK
+        }) 
         return (
-            <ThemeContext.Consumer>
-                {([theme, changeTheme]) => {
-                    const cnames = cx({
-                        [styles.lightTheme]: theme === THEMES.LIGHT,
-                        [styles.darkTheme]: theme === THEMES.DARK
-                    })
-                    return (
-                        <div className={cnames}>
-                            ContextTree
-                             <button onClick={changeTheme}>ChangeTheme</button>
-                            <Parent />
-                        </div>
-                    )
-                }}
-            </ThemeContext.Consumer>
-        );
+            <div className={cnames}>
+                ContextTree
+                <button onClick={this.props.changeTheme}>ChangeTheme</button>
+                <Parent />
+            </div>
+        )
     }
 }
 
-export default ContextTree;
 
-/*
-props-drilling (анти-паттерн) - поганий хід
-Прокидування пропсів там, де воно не має сенсу
 
-*/
+
+
+export default withTheme(ContextTree)
+

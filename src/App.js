@@ -38,7 +38,7 @@ class App extends React.Component { // Parent component (батьківська 
           <ThemeContext.Provider value={[this.state.theme, this.changeTheme]}>
             <UserContext.Provider value={[this.state.user, this.logOut]}>
               <Header />
-              <ContextTree />
+              <ContextTree superImportantProp = "value"/>
               {/* створити поряд компоненту Header, яка рендерить компоненту UserMenu, що теж потребує інфи юзера  */}
             </UserContext.Provider>
           </ThemeContext.Provider>
