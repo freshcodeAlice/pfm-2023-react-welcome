@@ -19,6 +19,7 @@ class ContextTree extends React.PureComponent {
             <div className={cnames}>
                 ContextTree
                 <button onClick={this.props.changeTheme}>ChangeTheme</button>
+            
                 <Parent />
             </div>
         )

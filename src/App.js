@@ -4,6 +4,7 @@ import Header from './components/Header';
 import UserContext from './contexts/UserContext';
 import ThemeContext from './contexts/ThemeContext';
 import CONSTANTS from './constants';
+import SignForm from './pages/SignForm';
 const {THEMES} = CONSTANTS;
 
 class App extends React.Component { // Parent component (батьківська компонента)
@@ -38,7 +39,7 @@ class App extends React.Component { // Parent component (батьківська 
           <ThemeContext.Provider value={[this.state.theme, this.changeTheme]}>
             <UserContext.Provider value={[this.state.user, this.logOut]}>
               <Header />
-              <ContextTree superImportantProp = "value"/>
+              <SignForm />
               {/* створити поряд компоненту Header, яка рендерить компоненту UserMenu, що теж потребує інфи юзера  */}
             </UserContext.Provider>
           </ThemeContext.Provider>
