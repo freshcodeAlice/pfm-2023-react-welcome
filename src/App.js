@@ -6,6 +6,7 @@ import ThemeContext from './contexts/ThemeContext';
 import CONSTANTS from './constants';
 import SignForm from './pages/SignForm';
 import ExpandedSignUpForm from './components/ExpandedSignUpForm';
+import BOM from './components/BOMexamples';
 const {THEMES} = CONSTANTS;
 
 class App extends React.Component { // Parent component (батьківська компонента)
@@ -39,8 +40,7 @@ class App extends React.Component { // Parent component (батьківська 
         return ( 
           <ThemeContext.Provider value={[this.state.theme, this.changeTheme]}>
             <UserContext.Provider value={[this.state.user, this.logOut]}>
-              <Header />
-              <ExpandedSignUpForm />
+              <BOM />
               {/* створити поряд компоненту Header, яка рендерить компоненту UserMenu, що теж потребує інфи юзера  */}
             </UserContext.Provider>
           </ThemeContext.Provider>
