@@ -1,21 +1,29 @@
 import React, { Component } from 'react';
 
 class BOM extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            user: {
+                firstName: 'John',
+                lastName: 'Doe',
+                age: 20
+            }
+        }
+    }
+    
    render() {
     return (
         <div>
             <p>Super cool text wich I want to write to clipboard</p>
             <button onClick={() => {
-               window.navigator.clipboard.readText().then((data) => {
-                console.log(data);
-               });
-            }}>Read my clipboard</button>
+               window.localStorage.setItem('user', JSON.stringify(this.state.user));
+            }}>Save my userdata</button>
 
         <button onClick={() => {
-               window.navigator.clipboard.writeText('Super cool text wich I want to write to clipboard').then(() => {
-                console.log('successfully copied!');
-               });
-            }}>Write to my clipboard</button>
+            const data = window.localStorage.getItem('user');
+            console.log(JSON.parse(data))
+            }}>console user data</button>
         </div>
     )
    }
@@ -26,6 +34,7 @@ class BOM extends Component {
 export default BOM;
 
 /*
-Створити компоненту, яка відображає поточні ширину і висоту вьюпорта і змінює ці дані, якщо ресайзити вікно
+Зробити кнопку, яка записує до localStorage об'єкт користувача.
+За натиснення на другу кнопку виводить цей об'єкт з localStorage на консоль
 
 */
