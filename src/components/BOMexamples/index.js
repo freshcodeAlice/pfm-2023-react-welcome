@@ -1,17 +1,41 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const BOM = () => {
-    return (
-        <div>
-            <button onClick={() => {
-                window.close()
-            }}>Close window</button>
-                        <button onClick={() => {
-                window.open('https://google.com')
-            }}>Open window</button>
-        </div>
-    );
+class BOM extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            width: 0,
+            height: 0
+        }
+    }
+
+    listener =  ({target: {innerWidth, innerHeight}}) => {
+        this.setState({
+            width: innerWidth,
+            height: innerHeight
+        })
+    }
+
+    componentDidMount() {
+        window.addEventListener('resize', this.listener)
+    }
+    
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.listener)
+    }
+    
+    render() {
+        const {width, height} = this.state;
+        return (
+            <div>
+                <p>width:{width}</p>
+                <p>height:{height}</p>
+            </div>
+        );
+    }
 }
+
+
 
 export default BOM;
 
