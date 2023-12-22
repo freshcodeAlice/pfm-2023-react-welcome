@@ -4,11 +4,18 @@ class BOM extends Component {
    render() {
     return (
         <div>
+            <p>Super cool text wich I want to write to clipboard</p>
             <button onClick={() => {
-                window.navigator.geolocation.getCurrentPosition((position) => {
-                    console.log(position) // Без дозволу користувача нічого не вийде!
-                })
-            }}>Pick me up </button>
+               window.navigator.clipboard.readText().then((data) => {
+                console.log(data);
+               });
+            }}>Read my clipboard</button>
+
+        <button onClick={() => {
+               window.navigator.clipboard.writeText('Super cool text wich I want to write to clipboard').then(() => {
+                console.log('successfully copied!');
+               });
+            }}>Write to my clipboard</button>
         </div>
     )
    }
