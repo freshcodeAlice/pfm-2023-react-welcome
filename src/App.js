@@ -7,6 +7,7 @@ import CONSTANTS from './constants';
 import SignForm from './pages/SignForm';
 import ExpandedSignUpForm from './components/ExpandedSignUpForm';
 import BOM from './components/BOMexamples';
+import './App.css';
 const {THEMES} = CONSTANTS;
 
 class App extends React.Component { // Parent component (батьківська компонента)

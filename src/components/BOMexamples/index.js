@@ -4,32 +4,33 @@ class BOM extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            width: 0,
-            height: 0
+            x: 0,
+            y: 0
         }
     }
 
-    listener =  ({target: {innerWidth, innerHeight}}) => {
+    listener =  ({currentTarget}) => {
         this.setState({
-            width: innerWidth,
-            height: innerHeight
+            x: currentTarget.scrollX,
+            y: currentTarget.scrollY
         })
+
     }
 
     componentDidMount() {
-        window.addEventListener('resize', this.listener)
+        window.addEventListener('scroll', this.listener)
     }
     
     componentWillUnmount() {
-        window.removeEventListener('resize', this.listener)
+        window.removeEventListener('scroll', this.listener)
     }
     
     render() {
-        const {width, height} = this.state;
+        const {x, y} = this.state;
         return (
-            <div>
-                <p>width:{width}</p>
-                <p>height:{height}</p>
+            <div style={{position: 'fixed'}}>
+                <p>x:{x}</p>
+                <p>y:{y}</p>
             </div>
         );
     }
