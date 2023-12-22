@@ -46,19 +46,11 @@ const initialValues = {
            <Formik 
            initialValues={initialValues}
            onSubmit={(values, formikBag) => {
-            console.log('values: ', values);
-            console.log('formikBag', formikBag);
-           }} validationSchema={SCHEMA}>
+           }} 
+           validationSchema={SCHEMA}>
             {(formikProps)=> {
                 return ( 
               <Form>
-                {/* <form onSubmit={formikProps.handleSubmit} onReset={formikProps.handleReset} >*/}
-                    {/* <input
-                        type='text' 
-                        name='firstName'
-                        placeholder='Type your name'
-                        value={firstName}
-                        onChange={this.changeHandler}/> */}
                         <Field name='firstName' placeholder='Type your name'/>
                         <ErrorMessage name='firstName' />
                         <Field name='lastName' placeholder='Type your lastName'/>
