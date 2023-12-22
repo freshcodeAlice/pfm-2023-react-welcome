@@ -4,9 +4,11 @@ class BOM extends Component {
    render() {
     return (
         <div>
-         <button onClick={() => {window.location.assign('http://google.com')}}>Assign</button>
-         <button onClick={() => {window.location.reload()}}>Reload</button>
-         <button onClick={() => {window.location.replace('http://google.com')}}>Replace</button>
+            <button onClick={() => {
+                window.navigator.geolocation.getCurrentPosition((position) => {
+                    console.log(position) // Без дозволу користувача нічого не вийде!
+                })
+            }}>Pick me up </button>
         </div>
     )
    }
