@@ -11,8 +11,16 @@ class BOM extends Component {
             }
         }
     }
+    componentDidMount() {
+        console.log('компоненту примонтували')
+    }
+
+    componentWillUnmount() {
+        console.log('компоненту зараз відмонтують')
+    }
     
    render() {
+    console.log('BOM renders')
     return (
         <div>
             <p>Super cool text wich I want to write to clipboard</p>

@@ -10,6 +10,7 @@ import SignForm from './pages/SignForm';
 import ExpandedSignUpForm from './components/ExpandedSignUpForm';
 import BOM from './components/BOMexamples';
 import './App.css';
+import Octopus from './components/Octopus';
 import {BrowserRouter, Route, Switch, Link} from 'react-router-dom';
 
 
@@ -48,12 +49,14 @@ class App extends React.Component { // Parent component (батьківська 
         return ( 
             <BrowserRouter>
               <Switch>
-                <Route path="/home" component={SignForm} />
-                <Route path="/bom">
+                <Route exact path='/' component={Octopus} />
+                <Route exact path="/home" component={SignForm} />
+                <Route exact path="/bom">
                   <BOM />
                 </Route>
-                <Route path="/data" component={DataLoader} />
-                <Route path="/tree" component={Tree} />
+                <Route exact path="/data" component={DataLoader} />
+                <Route exact path="/tree" component={Tree} />
+                <Route path="/*" component={NotFound} />
               </Switch>
               <Link to='/bom'>Link to bom-component</Link>
               <Link to='/home'>Link home</Link>
@@ -64,6 +67,13 @@ class App extends React.Component { // Parent component (батьківська 
 
 
 export default App;
+
+
+const NotFound = () => {
+  return (
+    <p>404 - Page not found</p>
+  )
+}
 
 
 /*
