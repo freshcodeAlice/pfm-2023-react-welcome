@@ -11,7 +11,7 @@ import ExpandedSignUpForm from './components/ExpandedSignUpForm';
 import BOM from './components/BOMexamples';
 import './App.css';
 import Octopus from './components/Octopus';
-import {BrowserRouter, Route, Switch, Link} from 'react-router-dom';
+import {BrowserRouter, Route, Routes, NavLink} from 'react-router-dom';
 
 
 
@@ -48,18 +48,16 @@ class App extends React.Component { // Parent component (батьківська 
         // console.log(ContextObj.Provider, ContextObj.Consumer)
         return ( 
             <BrowserRouter>
-              <Switch>
-                <Route exact path='/' component={Octopus} />
-                <Route exact path="/home" component={SignForm} />
-                <Route exact path="/bom">
-                  <BOM />
-                </Route>
-                <Route exact path="/data" component={DataLoader} />
-                <Route exact path="/tree" component={Tree} />
-                <Route path="/*" component={NotFound} />
-              </Switch>
-              <Link to='/bom'>Link to bom-component</Link>
-              <Link to='/home'>Link home</Link>
+              <Routes>
+                <Route path='/' element={<Octopus />} />
+                <Route path="/home" element={<SignForm />} />
+                <Route path="/bom" element={<BOM />} />
+                <Route path="/data" element={<DataLoader />} />
+                <Route path="/tree" element={<Tree />} />
+                <Route path="/*" element={<NotFound />} />
+              </Routes>
+              <NavLink to='/bom'>Link to bom-component</NavLink>
+              <NavLink to='/home'>Link home</NavLink>
             </BrowserRouter>
         )
       }
