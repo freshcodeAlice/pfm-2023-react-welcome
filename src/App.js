@@ -4,10 +4,17 @@ import Header from './components/Header';
 import UserContext from './contexts/UserContext';
 import ThemeContext from './contexts/ThemeContext';
 import CONSTANTS from './constants';
+import DataLoader from './components/DataLoader';
+import Tree from './components/ContextTree';
 import SignForm from './pages/SignForm';
 import ExpandedSignUpForm from './components/ExpandedSignUpForm';
 import BOM from './components/BOMexamples';
 import './App.css';
+import {BrowserRouter, Route, Switch, Link} from 'react-router-dom';
+
+
+
+
 const {THEMES} = CONSTANTS;
 
 class App extends React.Component { // Parent component (батьківська компонента)
@@ -39,12 +46,18 @@ class App extends React.Component { // Parent component (батьківська 
       render() {
         // console.log(ContextObj.Provider, ContextObj.Consumer)
         return ( 
-          <ThemeContext.Provider value={[this.state.theme, this.changeTheme]}>
-            <UserContext.Provider value={[this.state.user, this.logOut]}>
-              <BOM />
-              {/* створити поряд компоненту Header, яка рендерить компоненту UserMenu, що теж потребує інфи юзера  */}
-            </UserContext.Provider>
-          </ThemeContext.Provider>
+            <BrowserRouter>
+              <Switch>
+                <Route path="/home" component={SignForm} />
+                <Route path="/bom">
+                  <BOM />
+                </Route>
+                <Route path="/data" component={DataLoader} />
+                <Route path="/tree" component={Tree} />
+              </Switch>
+              <Link to='/bom'>Link to bom-component</Link>
+              <Link to='/home'>Link home</Link>
+            </BrowserRouter>
         )
       }
 }
@@ -52,18 +65,24 @@ class App extends React.Component { // Parent component (батьківська 
 
 export default App;
 
+
 /*
-Контекст
+Умовний рендеринг
 
-Контекст - це інтерфейс, який надає сховище для інформації та методи для підключення компоненти до цього сховища
+Умовний рендеринг - коли ми щось рендеримо (або ні) залежно від певної умови
 
-робота з контекстом складається з 3 кроків:
+Роутінг в React - умовний рендеринг на основі URL
 
-+1. Створення контексту.
-Викликаємо функцію React.createContext() і отримуємо об'єкт контексту
 
-+2. Роздача контексту нижче по дереву компонент
+React-router-dom
 
-+3. Підключення до контексту безпосередньо тої компоненти, якій він потрібен
+Три типа компонентів:
+1. Роутери (маршрутизатори) - диспетчер
+2. Роут-матчерс (стрілка)
+3. Роути (шляхи) - поїзди
+
+
+навігатори-лінки
+
 
 */
