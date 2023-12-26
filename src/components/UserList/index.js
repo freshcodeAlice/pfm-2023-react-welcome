@@ -81,3 +81,10 @@ class UserList extends Component {
 }
 
 export default UserList;
+
+
+/*
+Таска: переписати юзерЛіст на хуки
+
+
+*/
