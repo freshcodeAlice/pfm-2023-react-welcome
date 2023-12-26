@@ -1,14 +1,22 @@
 import React, { useState, useEffect } from 'react';
 
 function WindowResizer (props) {
+    const [tickTack, setTick] = useState(true);
     const [screen, setScreen] = useState({
         width: 0,
         height: 0
     });
 
     useEffect(function () {
-        window.addEventListener('resize', resizeHandler)
-    },[])
+        console.log('ефект навішено')
+        window.addEventListener('resize', resizeHandler);
+        // якщо перед відмонтуванням треба почистити за собою, ця функція має повернути інший коллбек, який і виконує роботу по очистці ефектів
+        return function(){
+            //отут чистимо за собою
+            console.log('ефект почищено')
+            window.removeEventListener('resize', resizeHandler);
+        }
+    },[tickTack])
 
     /*
     useEffect - хук. Викликати на вищому рівні компоненти
@@ -26,6 +34,10 @@ function WindowResizer (props) {
     якщо це пустий масив - [] - то коллбек буде виконано один раз
 
     якщо коллбек має бути виконано після зміни певного значення (пропса або стейта) він має бути вказаний в масиві залежностей
+
+    Якщо коллбек useEffect повертає функцію, що виконує роботу по очистці, ця функція викликається
+    - якщо коллбек одноразовий (пустий масив залежностей) - перед відмонтуванням компоненти
+    - якщо у коллбека є певна залежність, яка вказана у масиві залежностей,то перед наступним рендером компоненти СПОЧАТКУ викликається функція очищення попереднього ефекту, потім виконується навішування нового
     */
 
 
@@ -53,7 +65,9 @@ function WindowResizer (props) {
         <div>
             <p>width: {screen.width}</p>
             <p>height: {screen.height}</p>
-    
+            <button onClick={() => {
+                setTick(!tickTack)
+            }}>Click</button>
         </div>
     )
    }
