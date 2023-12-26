@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import InnerCompo from './innerComp';
 
 const NewCounter = () => { // функціональна компонента - хук використовувати можна
     // ось це - найвищий рівень
@@ -23,15 +24,17 @@ const NewCounter = () => { // функціональна компонента - 
     }
 
     const decrement = () => {
-        setCount(count-1)
+        setCount((prevState) => prevState - 1)
     }
 
+    console.log('батьківська оновилась!')
 
     return (
         <div>
            <h2>{count}</h2> 
            <button onClick={increment}>+</button>
            <button onClick={decrement}>-</button>
+           <InnerCompo callbackFromParent={setCount}/>
         </div>
     );
 }
