@@ -12,6 +12,7 @@ import BOM from './components/BOMexamples';
 import './App.css';
 import Octopus from './components/Octopus';
 import {BrowserRouter, Route, Routes, NavLink} from 'react-router-dom';
+import NewCounter from './components/NewCounter';
 
 
 
@@ -47,6 +48,8 @@ class App extends React.Component { // Parent component (батьківська 
       render() {
         // console.log(ContextObj.Provider, ContextObj.Consumer)
         return ( 
+          <UserContext.Provider value={[this.state.user, this.logOut]}>
+          <ThemeContext.Provider value={[this.state.theme, this.changeTheme]}>
             <BrowserRouter>
               <Routes>
                 <Route path='/' element={<Octopus />} />
@@ -54,11 +57,22 @@ class App extends React.Component { // Parent component (батьківська 
                 <Route path="/bom" element={<BOM />} />
                 <Route path="/data" element={<DataLoader />} />
                 <Route path="/tree" element={<Tree />} />
+                <Route path='/counter' element={<NewCounter />}/>
                 <Route path="/*" element={<NotFound />} />
               </Routes>
-              <NavLink to='/bom'>Link to bom-component</NavLink>
-              <NavLink to='/home'>Link home</NavLink>
+              <ul>
+                <li>  <NavLink to='/bom'>Link to bom-component</NavLink></li>
+                <li><NavLink to='/tree'>Link tree</NavLink></li>
+                <li><NavLink to='/counter'>Link counter</NavLink></li>
+                
+              </ul>
+            
+             
+              
+              
             </BrowserRouter>
+            </ThemeContext.Provider>
+            </UserContext.Provider>
         )
       }
 }
