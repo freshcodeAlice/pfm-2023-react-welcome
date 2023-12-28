@@ -13,7 +13,7 @@ function ContextTree(props) {
     const [theme, changeTheme] = useContext(ThemeContext);
 
 
-    // const logValue = () => {console.log(value)}
+    //  const logValue = () => {console.log(value)}
 
     const memoizedLogValue = useCallback(() => {console.log(value)}, [value]);
 
@@ -44,7 +44,7 @@ function ContextTree(props) {
             <button onClick={memoizedLogValue}>Click to log value</button>
             ContextTree
             <button onClick={changeTheme}>ChangeTheme</button>
-            <Parent />
+            <Parent callbackProp={memoizedLogValue}/>
         </div>
     )
 }
