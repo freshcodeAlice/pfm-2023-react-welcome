@@ -13,6 +13,7 @@ import './App.css';
 import Octopus from './components/Octopus';
 import {BrowserRouter, Route, Routes, NavLink} from 'react-router-dom';
 import NewCounter from './components/NewCounter';
+import UserList from './components/UserList';
 
 
 
@@ -58,12 +59,14 @@ class App extends React.Component { // Parent component (батьківська 
                 <Route path="/data" element={<DataLoader />} />
                 <Route path="/tree" element={<Tree />} />
                 <Route path='/counter' element={<NewCounter />}/>
+                <Route path='/userlist' element={<UserList />} />
                 <Route path="/*" element={<NotFound />} />
               </Routes>
               <ul>
                 <li>  <NavLink to='/bom'>Link to bom-component</NavLink></li>
                 <li><NavLink to='/tree'>Link tree</NavLink></li>
                 <li><NavLink to='/counter'>Link counter</NavLink></li>
+                <li><NavLink to='/userlist'>Link to user list</NavLink></li>
                 
               </ul>
             

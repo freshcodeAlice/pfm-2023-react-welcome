@@ -1,84 +1,56 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import UserCard from '../UserCard';
 import {getUser} from '../../api/getUser';
 import Spinner from '../Spinner';
 
-class UserList extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            users: [],
-            isFetching: true,
-            error: null,
-            page: 1
-        }
-    }
+function UserList (props) {
+        const [users, setUsers] = useState([]);
+        const [isFetching, setFetching] = useState(true);
+        const [error, setError] = useState(null);
+        const [page, setPage] = useState(1);
 
-    componentDidMount() {
-        this.load();
-    }
+        useEffect(load, [page]);
 
-    load = () => {
-        getUser(this.state.page)
-        .then(({results}) => {
-           this.setState({
-            users: results,
-           })
-        })
-        .catch(error => {
-            this.setState({
-                error: error,
+         //  temporary dead zone (тимчасова мертва зона) - ділянка коду, на якій змінна ще не визначена
+         // стосується const, let
+      
+        function load () {
+            getUser(page)
+            .then(({results}) => {
+                setUsers(results)
             })
-        })
-        .finally(()=>{
-           this.setState({
-            isFetching: false
-           })
-        })
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-        // this.setState({  --- неконтроване оновлення стану призведе до безкінечного пере-рендеру
-        //     users: []
-        // })
-
-        // потрібна умова!
-        // умова - сторінка змінилась!
-        if(prevState.page !== this.state.page) {
-            this.load();
-        }
-
-    }
-
-
-    prevBtnHandler = () => {
-        if(this.state.page > 1) {
-            this.setState({
-                page: this.state.page-1
+            .catch(error => {
+                setError(error)
+            })
+            .finally(()=>{
+                setFetching(false)
             })
         }
+        
+
+
+   const prevBtnHandler = () => {
+        if(page > 1) {
+            setPage(page - 1)
+        }
     }
 
-    nextBtnHandler = () => {
-        this.setState({
-            page: this.state.page+1
-        })
+   const nextBtnHandler = () => {
+        setPage(page + 1)
     }
     
-    render() {
-        const layout = this.state.users.map(u => <UserCard user={u} key={u.login.uuid} />);
+        const layout = users.map(u => <UserCard user={u} key={u.login.uuid} />);
         const errorMessage = <p>Ooops, something goes wrong</p>;
         return (
             <section style={{display: 'flex', flexWrap: 'wrap'}}>
-                <button onClick={this.prevBtnHandler}>Prev page</button>
-                <button onClick={this.nextBtnHandler}>Next page</button>
-                {this.state.isFetching && <Spinner /> }
-                {this.state.error && errorMessage}
+                <button onClick={prevBtnHandler}>Prev page</button>
+                <button onClick={nextBtnHandler}>Next page</button>
+                {isFetching && <Spinner /> }
+                {error && errorMessage}
                 {layout}
             </section>
         );
     }
-}
 
 export default UserList;
 
