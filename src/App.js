@@ -14,6 +14,7 @@ import Octopus from './components/Octopus';
 import {BrowserRouter, Route, Routes, NavLink} from 'react-router-dom';
 import NewCounter from './components/NewCounter';
 import UserList from './components/UserList';
+import PhoneLoader from './components/PhoneLoader';
 
 
 
@@ -60,6 +61,7 @@ class App extends React.Component { // Parent component (батьківська 
                 <Route path="/tree" element={<Tree />} />
                 <Route path='/counter' element={<NewCounter />}/>
                 <Route path='/userlist' element={<UserList />} />
+                <Route path='/phoneloader' element={<PhoneLoader />} />
                 <Route path="/*" element={<NotFound />} />
               </Routes>
               <ul>
@@ -67,7 +69,7 @@ class App extends React.Component { // Parent component (батьківська 
                 <li><NavLink to='/tree'>Link tree</NavLink></li>
                 <li><NavLink to='/counter'>Link counter</NavLink></li>
                 <li><NavLink to='/userlist'>Link to user list</NavLink></li>
-                
+                <li><NavLink to='/phoneloader'>Link to phone loader</NavLink></li>
               </ul>
             
              
