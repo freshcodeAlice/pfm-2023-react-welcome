@@ -1,15 +1,18 @@
-import React from 'react';
-import withUser from '../../../HOC/withUser';
-import withTheme from '../../../HOC/withTheme';
+import React, {useContext} from 'react';
+import UserContext from '../../../contexts/UserContext';
+import ThemeContext from '../../../contexts/ThemeContext';
 
 const UserMenu = (props) => {
+    const [theme, changeTheme] = useContext(ThemeContext);
+    const [user, setUser] = useContext(UserContext);
+
     return (
             <div style={{width: '200px', border: '2px solid blue'}}>
-            <p>{props.user.firstName} {props.user.lastName}</p>
-            <p>theme: {props.theme}</p>
+            <p>{user.firstName} {user.lastName}</p>
+            <p>theme: {theme}</p>
             </div>
     )
 }
 
 
-export default withTheme(withUser(UserMenu));
+export default UserMenu
