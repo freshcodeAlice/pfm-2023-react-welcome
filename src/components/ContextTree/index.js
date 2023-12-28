@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect, useCallback } from 'react';
+import React, { useContext, useState, useEffect, useCallback, useMemo } from 'react';
 import Parent from './Parent';
 import ThemeContext from '../../contexts/ThemeContext';
 import styles from './ContextTree.module.css';
@@ -21,11 +21,17 @@ function ContextTree(props) {
         console.log('функція logValue була перестворена заново')
     }, [memoizedLogValue])
 
-    const cnames = cx({
-        [styles.lightTheme]: theme === THEMES.LIGHT,
-        [styles.darkTheme]: theme === THEMES.DARK
-    });
+    // const cnames = cx({
+    //     [styles.lightTheme]: theme === THEMES.LIGHT,
+    //     [styles.darkTheme]: theme === THEMES.DARK
+    // });
     
+    const memoClasses = useMemo(() => {
+       return cx({
+            [styles.lightTheme]: theme === THEMES.LIGHT,
+            [styles.darkTheme]: theme === THEMES.DARK
+            });
+    }, [theme])
 
     const changeHandler = ({target: {value}}) => {
         setValue(value);
@@ -33,7 +39,7 @@ function ContextTree(props) {
 
 
     return (
-        <div className={cnames}>
+        <div className={memoClasses}>
             <input type="text" name="value" value={value} onChange={changeHandler}/>
             <button onClick={memoizedLogValue}>Click to log value</button>
             ContextTree
