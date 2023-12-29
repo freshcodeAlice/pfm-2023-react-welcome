@@ -6,7 +6,6 @@ import ThemeContext from './contexts/ThemeContext';
 import CONSTANTS from './constants';
 import DataLoader from './components/DataLoader';
 import Tree from './components/ContextTree';
-import SignForm from './pages/SignForm';
 import ExpandedSignUpForm from './components/ExpandedSignUpForm';
 import BOM from './components/BOMexamples';
 import './App.css';
@@ -15,7 +14,7 @@ import {BrowserRouter, Route, Routes, NavLink} from 'react-router-dom';
 import NewCounter from './components/NewCounter';
 import UserList from './components/UserList';
 import PhoneLoader from './components/PhoneLoader';
-
+import SignForm from './components/SignForm';
 
 
 
@@ -55,12 +54,12 @@ class App extends React.Component { // Parent component (батьківська 
             <BrowserRouter>
               <Routes>
                 <Route path='/' element={<Octopus />} />
-                <Route path="/home" element={<SignForm />} />
                 <Route path="/bom" element={<BOM />} />
                 <Route path="/data" element={<DataLoader />} />
                 <Route path="/tree" element={<Tree />} />
                 <Route path='/counter' element={<NewCounter />}/>
                 <Route path='/userlist' element={<UserList />} />
+                <Route path='/form' element={<SignForm />} />
                 <Route path='/phoneloader' element={<PhoneLoader />} />
                 <Route path="/*" element={<NotFound />} />
               </Routes>
@@ -70,6 +69,7 @@ class App extends React.Component { // Parent component (батьківська 
                 <li><NavLink to='/counter'>Link counter</NavLink></li>
                 <li><NavLink to='/userlist'>Link to user list</NavLink></li>
                 <li><NavLink to='/phoneloader'>Link to phone loader</NavLink></li>
+                <li><NavLink to='/form'>Link to form</NavLink></li>
               </ul>
             
              
