@@ -1,4 +1,4 @@
-import React, {useState, useReducer} from 'react';
+import React, { useReducer} from 'react';
 
 
 /*
@@ -21,25 +21,44 @@ import React, {useState, useReducer} from 'react';
 
 function reducer(state, action) {
     switch(action.type) {
-        case 'Action_type': {
-            // вот таким чином міняємо стейт
-            const newState = {
+        case 'firstName': 
+        case 'lastName': 
+        case 'email':
+        case 'password':
+        case 'birthday':
+        case 'gender': {
+           return {
                 ...state,
-                newKey: action.test
+                [action.type]: action.value
             }
-            return newState
+            break
+        }
+        case 'another action type': {
+            // іншим чином змінюємо стейт
         }
         default: {
             return state
         }
     }
 
+    // return {
+    //     ...state,
+    //     [action.type]: action.value
+    // }
+
 }
 
 
 
 const SignForm = () => {
-    const [state, dispatch] = useReducer(reducer, {initial: 'init value'});
+    const [state, dispatch] = useReducer(reducer, {
+            firstName: '',
+            lastName: '',
+            email: '',
+            password: '',
+            birthday: '',
+            gender: ''
+    });
     /*
     При виклику хука передаємо йому функцію-редьюсер, (необов'язково - початковий об'єкт стейту)
     Отримуємо масив з двома елементами:
@@ -49,18 +68,13 @@ const SignForm = () => {
     */
 
 
-    const clickHandler = (event) => {
-        event.preventDefault();
-        const action = {  // js-об'єкт
-            type: 'Action_type',
-            test: 'test value for storage'
+    const inputChangeHandler = ({target: {name, value}}) => {
+        const action = {
+            type: name,
+            value
         }
-
         dispatch(action)
     }
-
-
-
 
 
 
@@ -108,20 +122,19 @@ const SignForm = () => {
     //     setFirstName(value)
     // }
 
-
+    const {firstName, lastName, email, password, birthday, gender} = state;
     return (
         <form>
-            {/* <input name="firstName" placeholder='firstName' value={firstName} onChange={changeHandler}/>
-            <input name="lastName"  placeholder='lastName' value={lastName} onChange={changeHandler}/>
-            <input name="email"  placeholder='email' value={email} onChange={changeHandler}/>
-            <input name="password"  placeholder='password' value={password} onChange={changeHandler}/>
-            <input name="birthday" type="date" value={birthday} onChange={changeHandler}/>
-            <select value={gender} onChange={changeHandler} name="gender">
+            <input name="firstName" placeholder='firstName' value={firstName} onChange={inputChangeHandler}/>
+            <input name="lastName"  placeholder='lastName' value={lastName} onChange={inputChangeHandler}/>
+            <input name="email"  placeholder='email' value={email} onChange={inputChangeHandler}/>
+            <input name="password"  placeholder='password' value={password} onChange={inputChangeHandler}/>
+            <input name="birthday" type="date" value={birthday} onChange={inputChangeHandler}/>
+            <select value={gender} onChange={inputChangeHandler} name="gender">
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
                 <option value="Nonbinary">Nonbinary</option>
-            </select> */}
-            <button onClick={clickHandler}>Click to changes</button>
+            </select>
         </form>
     );
 }
